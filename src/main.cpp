@@ -64,7 +64,7 @@ int main(void) {
     uint64_t t_max = 30;
     double eps = 0.01;
     //layout_sparse_weighted(n, X, len_I, I, J, V, p, t_max, eps);
-    layout_sparse_unweighted(n, X, len_I, I, J, p, t_max, eps);
+    sgd2::layout_sparse_unweighted(n, X, len_I, I, J, p, t_max, eps);
     /*
     for (uint64_t i = 0; i < n; ++i) {
         std::cout << X[i*2] << " " << X[i*2+1] << std::endl;

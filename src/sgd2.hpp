@@ -17,6 +17,7 @@
 #include <unordered_map>
 #include <random>
 
+namespace sgd2 {
 
 ////////////////////////
 // External interface //
@@ -1017,4 +1018,4 @@ int main(void)
 */
 
 
-
+}

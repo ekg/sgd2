@@ -1,0 +1,7 @@
+\#*
+.#*
+*~
+bin/
+test/
+.gdb_history
+*.svg

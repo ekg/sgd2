@@ -2,7 +2,7 @@
 #include <iostream>
 #include "sgd2.hpp"
 
-void draw_svg(uint64_t n, double* X, uint64_t len_I, uint64_t* I, uint64_t* J) {
+void draw_svg(uint64_t n, const std::vector<double>& X, uint64_t len_I, const std::vector<uint64_t>& I, const std::vector<uint64_t>& J) {
     double scale = 5.0;
     double border = 10.0;
     double min_x = 0;
@@ -48,10 +48,13 @@ void draw_svg(uint64_t n, double* X, uint64_t len_I, uint64_t* I, uint64_t* J) {
 int main(void) {
     uint64_t n = 8;
     uint64_t len_I = 9;
-    uint64_t I[len_I] = { 0,0,1,2,3,4,4,5,6 };
-    uint64_t J[len_I] = { 1,2,3,3,4,5,6,7,7 };
+    //uint64_t I[len_I] = { 0,0,1,2,3,4,4,5,6 };
+    //uint64_t J[len_I] = { 1,2,3,3,4,5,6,7,7 };
+    std::vector<uint64_t> I = { 0,0,1,2,3,4,4,5,6 };
+    std::vector<uint64_t> J = { 1,2,3,3,4,5,6,7,7 };
     //double V[len_I] = { 1,2,1,1,3,1,2,2,1 };
-    double X[2*n]; // = { 0,0, .1,.1, .2,.2, .3,.3, .4,.4, .5,.5, .6,.6, .7,.7 };
+    //double X[2*n]; // = { 0,0, .1,.1, .2,.2, .3,.3, .4,.4, .5,.5, .6,.6, .7,.7 };
+    std::vector<double> X(2*n);
     std::random_device dev;
     // todo, seed with graph topology/contents to get a stable result
     std::mt19937 rng(dev());
@@ -64,7 +67,7 @@ int main(void) {
     uint64_t t_max = 30;
     double eps = 0.01;
     //layout_sparse_weighted(n, X, len_I, I, J, V, p, t_max, eps);
-    sgd2::layout_sparse_unweighted(n, X, len_I, I, J, p, t_max, eps);
+    sgd2::layout_sparse_unweighted(n, X.data(), I.size(), I.data(), J.data(), p, t_max, eps);
     /*
     for (uint64_t i = 0; i < n; ++i) {
         std::cout << X[i*2] << " " << X[i*2+1] << std::endl;

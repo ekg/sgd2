@@ -937,7 +937,6 @@ std::vector<double> schedule(const std::vector<term_sparse> &terms, uint64_t t_m
     return etas;
 }
 
-
 void layout_sparse_unweighted(uint64_t n, double* X, uint64_t m, uint64_t* I, uint64_t* J, uint64_t p, uint64_t t_max, double eps)
 {
     try

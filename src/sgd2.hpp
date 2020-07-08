@@ -158,8 +158,13 @@ std::vector<std::vector<uint64_t>> build_graph_unweighted(uint64_t n, uint64_t m
 std::vector<term> bfs(uint64_t n, uint64_t m, uint64_t* I, uint64_t* J)
 {
     auto graph = build_graph_unweighted(n, m, I, J);
-
-    uint64_t nC2 = (n*(n-1))/2;
+        
+    uint64_t nC2;
+    if (n == 1) {
+        nC2 = 1;
+    } else {
+        nC2 = (n*(n-1))/2;
+    }
     std::vector<term> terms;
     terms.reserve(nC2);
 

@@ -89,11 +89,14 @@ std::vector<term_sparse> MSSP_weighted(const std::vector<std::vector<edge>>& gra
 
 void sgd(double* X, std::vector<term> &terms, const std::vector<double> &etas, double delta)
 {
+    std::random_device rd;
+    std::mt19937 rg(rd());
+
     // iterate through step sizes
     for (double eta : etas)
     {
         // shuffle terms
-        std::random_shuffle(terms.begin(), terms.end());
+        std::shuffle(terms.begin(), terms.end(), rg);
 
         double Delta_max = 0;
         for (const term &t : terms)
@@ -459,11 +462,14 @@ void mds_direct(uint64_t n, double* X, double* d, double* w, uint64_t t_max, dou
 
 void sgd(double* X, std::vector<term_sparse> &terms, const std::vector<double> &etas)
 {
+    std::random_device rd;
+    std::mt19937 rg(rd());
+
     // iterate through step sizes
     for (double eta : etas)
     {
         // shuffle terms
-        std::random_shuffle(terms.begin(), terms.end());
+        std::shuffle(terms.begin(), terms.end(), rg);
 
         for (const term_sparse& t : terms)
         {
